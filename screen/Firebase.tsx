@@ -61,18 +61,18 @@ export default function Firebase() {
 
   var db = firebase.firestore();
 
-  db.collection(`users`)
-    .add({
-      first: "Ben",
-      last: "K",
-      height: "5'7",
-    })
-    .then(function (docRef) {
-      console.log("Document wrriten with ID: ", docRef.id);
-    })
-    .catch(function (error) {
-      console.error("Error adding document: ", error);
-  });
+  // db.collection(`users`)
+  //   .add({
+  //     first: "Ben",
+  //     last: "K",
+  //     height: "5'7",
+  //   })
+  //   .then(function (docRef) {
+  //     console.log("Document wrriten with ID: ", docRef.id);
+  //   })
+  //   .catch(function (error) {
+  //     console.error("Error adding document: ", error);
+  // });
 
   return (
     <View style={styles.container}>
