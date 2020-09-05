@@ -11,3 +11,7 @@ web-build/
 
 # macOS
 .DS_Store
+
+res
+
+# Guideline: ignore all that contains sensitive information and path to those sensitive information

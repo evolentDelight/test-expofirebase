@@ -4,6 +4,8 @@ import React from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, View } from "react-native";
 
+import firebaseConfig from "../res/config/firebaseconfig";
+
 /*
 
   Add as JS Server file in root folder~~
@@ -12,19 +14,7 @@ import { StyleSheet, Text, View } from "react-native";
 
 //Firebase setup
 import * as firebase from "firebase";
-import "firebase/auth";
 import "firebase/firestore";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyC7oULkXcKNPyiQck9yd_U-Z5ckc_LSaEM",
-  authDomain: "test-firstexpofirebase.firebaseapp.com",
-  databaseURL: "https://test-firstexpofirebase.firebaseio.com",
-  projectId: "test-firstexpofirebase",
-  storageBucket: "test-firstexpofirebase.appspot.com",
-  messagingSenderId: "1028607848712",
-  appId: "1:1028607848712:web:896daaf75e2e3e8cbebcbd",
-  measurementId: "G-HE8M76YB2X",
-};
 
 //Create nanoID for UserID
 
