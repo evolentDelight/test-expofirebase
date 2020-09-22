@@ -1,5 +1,4 @@
 import "react-native-gesture-handler";
-import { StatusBar } from "expo-status-bar";
 import React, { useState, useEffect } from "react";
 import { useNavigation } from "@react-navigation/native";
 import { StyleSheet, Text, View } from "react-native";
@@ -7,7 +6,7 @@ import AsyncStorage from "@react-native-community/async-storage";
 
 export default function StackNotes() {
   const navigate = useNavigation();
-  const [key, setKey] = useState<string | null>("");
+  const [key, setKey] = useState<Object | null>(""); //State to display key object
   const [value, setValue] = useState<object | null>({});
 
   const setKeys = async (key: string) => {
@@ -15,11 +14,9 @@ export default function StackNotes() {
     try {
       const jsonValue = JSON.stringify(key);
       //Check if keys key-pair exists to determine to merge to existing pair or create new one
-      if (await AsyncStorage.getItem("keys")) {
-        AsyncStorage.mergeItem("keys", jsonValue);
-      } else {
-        AsyncStorage.setItem("keys", jsonValue);
-      }
+      const keyobject = await AsyncStorage.getItem("keys");
+
+      AsyncStorage.setItem("keys", jsonValue); //Assign new keys into object
     } catch (e) {
       console.log(`setKeys Error: ${e}`);
     }
@@ -30,7 +27,7 @@ export default function StackNotes() {
     try {
       const jsonValue = await AsyncStorage.getItem("keys");
 
-      if (jsonValue == null) {
+      if (jsonValue === null) {
         return null;
       } else {
         return JSON.parse(jsonValue); //JSON requires a string otherwise it throws an error
@@ -56,7 +53,7 @@ export default function StackNotes() {
     try {
       const jsonValue = await AsyncStorage.getItem(key);
 
-      if (jsonValue == null) {
+      if (jsonValue === null) {
         return null;
       } else {
         return JSON.parse(jsonValue); //JSON requires a string otherwise it throws an error
@@ -72,22 +69,24 @@ export default function StackNotes() {
   setData("stack01", { card01: "stampede", card02: "locks" });
   setKeys("stack01");
 
-  useEffect(() => {
-    const keysobject = getKeys();
-    keysobject.then((keys) => {
-      setKey(keys);
-    });
+  // useEffect(() => {
+  //   const keysobject = getKeys();
+  //   keysobject.then((keys: Object) => {
+  //     setKey(keys);
+  //     console.log("keys ", keys);
+  //   });
 
-    const valueobject = getData("stack01");
-    valueobject.then((values) => {
-      setValue(values);
-    });
-  }, [key, value]);
+  //   const valueobject = getData("stack01");
+  //   valueobject.then((values) => {
+  //     setValue(values);
+  //     console.log("stack ", values);
+  //   });
+  // }, [key, value]);
 
   return (
     <View style={styles.container}>
-      <Text>Open up App.tsx to start working on your app!</Text>
-      <StatusBar style="auto" />
+      <Text>keys: </Text>
+      <Text>card: </Text>
     </View>
   );
 }
@@ -100,3 +99,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
 });
+
+//Proof of Concept: Success
+//Works as intended. Additional code and logic are needed; such will be implemented in final product
