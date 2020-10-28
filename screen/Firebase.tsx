@@ -18,7 +18,7 @@ import "firebase/firestore";
 
 //Create nanoID for UserID
 
-//Will be enabled in root JS firestore file
+//Will be enabled in root JS firestore file***
 /*
 function readFirestore() {
   db.collection("users")
